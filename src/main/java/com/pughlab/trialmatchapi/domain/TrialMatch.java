@@ -35,13 +35,28 @@ public class TrialMatch {
 
     @NotNull
     @Size(min = 1)
+    @Field("code")
+    private String code;
+
+    @NotNull
+    @Size(min = 1)
     @Field("match_type")
     private String matchType;
 
     @NotNull
     @Size(min = 1)
+    @Field("match_level")
+    private String matchLevel;
+
+    @NotNull
+    @Size(min = 1)
     @Field("sample_id")
     private String sampleID;
+
+    @NotNull
+    @Size(min = 1)
+    @Field("patient_id")
+    private String patientID;
 
     @NotNull
     @Size(min = 1)
@@ -73,13 +88,37 @@ public class TrialMatch {
     @Field("dose")
     private String dose;
 
-    public TrialMatch(String nctID, String title, String matchType, String sampleID, String hugoSymbol,
-                      String variantClassification, String proteinChange, String chromosome,
-                      long position, String dose) {
+    @NotNull
+    @Size(min = 1)
+    @Field("mutation_effect")
+    private String mutEffect;
+
+    @NotNull
+    @Size(min = 1)
+    @Field("trial_accrual_status")
+    private String trialStatus;
+
+    @NotNull
+    @Size(min = 1)
+    @Field("oncogenicity")
+    private String oncogenicity;
+
+    @NotNull
+    @Size(min = 1)
+    @Field("vital_status")
+    private String vitalStatus;
+
+    public TrialMatch(String nctID, String title, String code, String matchType, String matchLevel, String sampleID,
+                      String hugoSymbol, String variantClassification, String proteinChange, String chromosome,
+                      long position, String dose, String patientID, String oncogenicity,
+                      String mutEffect, String trialStatus, String vitalStatus) {
         this.nctID = nctID;
         this.title = title;
+        this.code = code;
         this.matchType = matchType;
+        this.matchLevel = matchLevel;
         this.sampleID = sampleID;
+        this.patientID = patientID;
         this.hugoSymbol = hugoSymbol;
         this.variantClassification = variantClassification;
         this.proteinChange = proteinChange;
@@ -87,6 +126,10 @@ public class TrialMatch {
         this.chromosome = chromosome;
         this.position = position;
         this.dose = dose;
+        this.mutEffect = mutEffect;
+        this.oncogenicity = oncogenicity;
+        this.trialStatus = trialStatus;
+        this.vitalStatus = vitalStatus;
     }
 
     public String getId() {
@@ -113,12 +156,24 @@ public class TrialMatch {
         this.title = title;
     }
 
+    public String getCode() { return code; }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getMatchType() {
         return matchType;
     }
 
     public void setMatchType(String matchType) {
         this.matchType = matchType;
+    }
+
+    public String getMatchLevel() { return matchLevel; }
+
+    public void setMatchLevel(String matchLevel) {
+        this.matchLevel = matchLevel;
     }
 
     public String getSampleID() {
@@ -175,5 +230,35 @@ public class TrialMatch {
 
     public void setDose(String dose) {
         this.dose = dose;
+    }
+
+    public String getPatientID() { return  patientID; }
+
+    public void setPatientID(String patientID) {
+        this.patientID = patientID;
+    }
+
+    public String getTrialStatus() { return trialStatus; }
+
+    public void setTrialStatus(String trialStatus) {
+        this.trialStatus = trialStatus;
+    }
+
+    public String getOncogenicity() { return oncogenicity; }
+
+    public void setOncogenicity(String oncogenicity) {
+        this.oncogenicity = oncogenicity;
+    }
+
+    public String getMutEffect() { return mutEffect; }
+
+    public void setMutEffect(String mutEffect) {
+        this.mutEffect = mutEffect;
+    }
+
+    public String getVitalStatus() { return vitalStatus; }
+
+    public void setVitalStatus(String vitalStatus) {
+        this.vitalStatus = vitalStatus;
     }
 }
