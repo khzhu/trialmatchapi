@@ -19,17 +19,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@Api(value="trialmatchapi", description="Operations pertaining to retriving clinical and genomic information to trials")
+@Api(value="trialmatchapi", description="Operations pertaining to retriving clinical and genomic information for trials")
 public class TrialMatchController {
 
     private TrialMatchService trialMatchService;
 
     @Autowired
-    public void setProductService(TrialMatchService trialMatchService) {
+    public void setTrialMatchService(TrialMatchService trialMatchService) {
         this.trialMatchService = trialMatchService;
     }
 
-    @ApiOperation(value = "Add a product")
+    @ApiOperation(value = "Add a Trial Match")
     @RequestMapping(value = "/matches/add", method = RequestMethod.POST, produces = "application/json")
     public void createTrialMatch(@RequestBody TrialMatch trialMatch) {
         trialMatchService.saveTrialMatch(trialMatch);
@@ -59,15 +59,15 @@ public class TrialMatchController {
     @ApiOperation(value = "View a list of available trial matches with a gene",response = Iterable.class)
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/matches/gene/{gene}")
-    public Iterable<TrialMatch> findBookByHugoSymbol(@PathVariable String gene) {
+            value = "/matches/variants/{gene}")
+    public Iterable<TrialMatch> findTrialMatchesByGene(@PathVariable String gene) {
 
         return trialMatchService.getTrialMatchByHugoSymbol(gene);
     }
 
     @ApiOperation(value = "Delete a trial match")
-    @RequestMapping(value="/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
-    public void deleteBookWithId(@PathVariable String id) {
+    @RequestMapping(value="/matches/delete/{id}", method = RequestMethod.DELETE, produces = "application/json")
+    public void deleteTrialMatchWithId(@PathVariable String id) {
         trialMatchService.delete(id);
     }
 
