@@ -9,6 +9,9 @@ import com.pughlab.trialmatchapi.web.TrialMatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  * REST web services for retrieving matched patient clinical and genomic information to trials
  *
@@ -59,10 +62,11 @@ public class TrialMatchController {
     @ApiOperation(value = "View a list of available trial matches with a gene",response = Iterable.class)
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/matches/variants/{gene}")
-    public Iterable<TrialMatch> findTrialMatchesByGene(@PathVariable String gene) {
-
-        return trialMatchService.getTrialMatchByHugoSymbol(gene);
+            value = "/matches/genes/{gene}")
+    public HashMap<String, List<TrialMatch>> findTrialMatchesByGene(@PathVariable String gene) {
+        HashMap<String, List<TrialMatch>> trialMatches = new HashMap<String, List<TrialMatch>>();
+        trialMatches.put("matches", trialMatchService.getTrialMatchByHugoSymbol(gene));
+        return trialMatches;
     }
 
     @ApiOperation(value = "Delete a trial match")

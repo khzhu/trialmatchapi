@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class TrialMatchServiceImpl implements TrialMatchService {
@@ -32,7 +33,7 @@ public class TrialMatchServiceImpl implements TrialMatchService {
     }
 
     @Override
-    public Iterable<TrialMatch> getTrialMatchByHugoSymbol(String hugoSymbol) {
+    public List<TrialMatch> getTrialMatchByHugoSymbol(String hugoSymbol) {
         logger.debug("getTrialMatchByHugoSymbol called");
         return trialMatchRepository.findTrialMatchByHugoSymbol(hugoSymbol);
     }
