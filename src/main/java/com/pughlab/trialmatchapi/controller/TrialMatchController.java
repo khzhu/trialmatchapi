@@ -68,10 +68,8 @@ public class TrialMatchController {
         return trialMatchService.getTrialMatchById(id);
     }
 
-    private HashMap getTrialMatchesByHugoSymbol(String symbol) {
-        HashMap<String, Object> trialMatches = new HashMap<String, Object>();
-        trialMatches.put("name", symbol);
-        List<HashMap> trails = new ArrayList<HashMap>();
+    private List<HashMap> getTrialMatchesByHugoSymbol(String symbol) {
+        List<HashMap> trailMatches = new ArrayList<HashMap>();
 
         for (Trial trial: trialService.listAllTrials()) {
             HashMap<String, Object> trialMap= new HashMap<String, Object>();
@@ -79,30 +77,21 @@ public class TrialMatchController {
             trialMap.put("nctId", trial.getNctID());
             trialMap.put("status", trial.getStatus());
             trialMap.put("matches", trialMatchService.getTrialMatchByNctIdAndHugoSymbol(trial.getNctID(),symbol));
-            trails.add(trialMap);
+            trailMatches.add(trialMap);
         }
-        trialMatches.put("trials", trails);
 
-        return trialMatches;
+        return trailMatches;
     }
 
-    @ApiOperation(value = "View a list of available trial matches with a gene",response = Iterable.class)
-    @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/matches/gene/{symbol}")
-    public HashMap findTrialMatchesByGene(@PathVariable String symbol) {
-        return getTrialMatchesByHugoSymbol(symbol);
-    }
-
-    @ApiOperation(value = "View available trial matches with a list of genes, seperated by comma",response = List.class)
+    @ApiOperation(value = "View available trial matches with a list of genes, separated by comma",response = List.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/genes/{symbols}")
-    public List<HashMap> findTrialMatchesByGenes(@PathVariable String symbols) {
-        List<HashMap> trialMatches = new ArrayList<HashMap>();
+    public HashMap findTrialMatchesByGenes(@PathVariable String symbols) {
+        HashMap<String, List<HashMap>> trialMatchMap = new HashMap<String, List<HashMap>>();
         List<String> genes = Arrays.asList(symbols.trim().split(","));
-        genes.forEach(gene-> trialMatches.add(getTrialMatchesByHugoSymbol(gene)));
-        return trialMatches;
+        genes.forEach(gene-> trialMatchMap.put(gene, getTrialMatchesByHugoSymbol(gene)));
+        return trialMatchMap;
     }
 
     @ApiOperation(value = "Delete a trial match")
