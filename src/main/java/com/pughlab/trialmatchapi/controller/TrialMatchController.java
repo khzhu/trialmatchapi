@@ -4,13 +4,16 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import com.pughlab.trialmatchapi.domain.TrialMatch;
-import com.pughlab.trialmatchapi.web.TrialMatchService;
+import com.pughlab.trialmatchapi.domain.*;
+import com.pughlab.trialmatchapi.web.*;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java .util.ArrayList;
+import java.util.Arrays;
 
 /**
  * REST web services for retrieving matched patient clinical and genomic information to trials
@@ -26,10 +29,16 @@ import java.util.List;
 public class TrialMatchController {
 
     private TrialMatchService trialMatchService;
+    private TrialService trialService;
 
     @Autowired
     public void setTrialMatchService(TrialMatchService trialMatchService) {
         this.trialMatchService = trialMatchService;
+    }
+
+    @Autowired
+    public void setTrialService(TrialService trialService) {
+        this.trialService = trialService;
     }
 
     @ApiOperation(value = "Add a Trial Match")
@@ -59,13 +68,40 @@ public class TrialMatchController {
         return trialMatchService.getTrialMatchById(id);
     }
 
+    private HashMap getTrialMatchesByHugoSymbol(String symbol) {
+        HashMap<String, Object> trialMatches = new HashMap<String, Object>();
+        trialMatches.put("name", symbol);
+        List<HashMap> trails = new ArrayList<HashMap>();
+
+        for (Trial trial: trialService.listAllTrials()) {
+            HashMap<String, Object> trialMap= new HashMap<String, Object>();
+            trialMap.put("title", trial.getTitle());
+            trialMap.put("nctId", trial.getNctID());
+            trialMap.put("status", trial.getStatus());
+            trialMap.put("matches", trialMatchService.getTrialMatchByNctIdAndHugoSymbol(trial.getNctID(),symbol));
+            trails.add(trialMap);
+        }
+        trialMatches.put("trials", trails);
+
+        return trialMatches;
+    }
+
     @ApiOperation(value = "View a list of available trial matches with a gene",response = Iterable.class)
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/matches/genes/{gene}")
-    public HashMap<String, List<TrialMatch>> findTrialMatchesByGene(@PathVariable String gene) {
-        HashMap<String, List<TrialMatch>> trialMatches = new HashMap<String, List<TrialMatch>>();
-        trialMatches.put("matches", trialMatchService.getTrialMatchByHugoSymbol(gene));
+            value = "/matches/gene/{symbol}")
+    public HashMap findTrialMatchesByGene(@PathVariable String symbol) {
+        return getTrialMatchesByHugoSymbol(symbol);
+    }
+
+    @ApiOperation(value = "View available trial matches with a list of genes, seperated by comma",response = List.class)
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/matches/genes/{symbols}")
+    public List<HashMap> findTrialMatchesByGenes(@PathVariable String symbols) {
+        List<HashMap> trialMatches = new ArrayList<HashMap>();
+        List<String> genes = Arrays.asList(symbols.trim().split(","));
+        genes.forEach(gene-> trialMatches.add(getTrialMatchesByHugoSymbol(gene)));
         return trialMatches;
     }
 

@@ -11,6 +11,8 @@ public interface TrialMatchService {
 
     List<TrialMatch> getTrialMatchByHugoSymbol(String hugoSymbol);
 
+    List<TrialMatch> getTrialMatchByNctIdAndHugoSymbol(String nctId, String hugoSymbol);
+
     TrialMatch saveTrialMatch(TrialMatch trialMatch);
 
     void delete(String id);

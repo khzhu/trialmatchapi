@@ -16,7 +16,7 @@ public class TrialMatchServiceImpl implements TrialMatchService {
     private TrialMatchRepository trialMatchRepository;
 
     @Autowired
-    public void setProductRepository(TrialMatchRepository trialMatchRepository) {
+    public void setTrialMatchRepository(TrialMatchRepository trialMatchRepository) {
         this.trialMatchRepository = trialMatchRepository;
     }
 
@@ -37,14 +37,21 @@ public class TrialMatchServiceImpl implements TrialMatchService {
         logger.debug("getTrialMatchByHugoSymbol called");
         return trialMatchRepository.findTrialMatchByHugoSymbol(hugoSymbol);
     }
+
+    @Override
+    public List<TrialMatch> getTrialMatchByNctIdAndHugoSymbol(String nctId, String hugoSymbol) {
+        logger.debug("getTrialMatchByNctIdAndHugoSymbol called");
+        return trialMatchRepository.findDistinctByNctIDAndAndHugoSymbol(nctId, hugoSymbol);
+    }
+
     public TrialMatch saveTrialMatch(TrialMatch trialMatch) {
-        logger.debug("saveProduct called");
+        logger.debug("saveTrialMatch called");
         return trialMatchRepository.save(trialMatch);
     }
 
     @Override
     public void delete(String id) {
-        logger.debug("deleteProduct called");
+        logger.debug("delete called");
         trialMatchRepository.delete(getTrialMatchById(id));
     }
 }
