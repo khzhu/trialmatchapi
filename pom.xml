@@ -6,7 +6,7 @@
     <groupId>com.pughlab</groupId>
     <artifactId>trial-match-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>trial-match-api</name>
     <description>Demo project for Spring Boot</description>
@@ -64,6 +64,12 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>2.8.0</version>
             <scope>compile</scope>
+        </dependency>
+        <!-- marked the embedded servlet container as provided -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
