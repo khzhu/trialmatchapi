@@ -39,6 +39,11 @@ public class Genomic {
 
     @NotNull
     @Size(min = 1)
+    @Field("ONCOGENICITY")
+    private String oncogenicity;
+
+    @NotNull
+    @Size(min = 1)
     @Field("TRUE_VARIANT_CLASSIFICATION")
     private String classification;
 
@@ -53,11 +58,12 @@ public class Genomic {
     private String cnvCall;
 
     public Genomic(String id, String hugoSymbol, String proteinChange, String effect,
-                   String classification, String category, String cnvCall) {
+                   String oncogenicity, String classification, String category, String cnvCall) {
         this.id = id;
         this.hugoSymbol = hugoSymbol;
         this.proteinChange = proteinChange;
         this.effect = effect;
+        this.oncogenicity = oncogenicity;
         this.classification = classification;
         this.category = category;
         this.cnvCall = cnvCall;
@@ -91,6 +97,12 @@ public class Genomic {
 
     public void setEffect(String effect) {
         this.effect = effect;
+    }
+
+    public String getOncogenicity() { return  oncogenicity; }
+
+    public void setOncogenicity(String oncogenicity) {
+        this.oncogenicity = oncogenicity;
     }
 
     public String getClassification() { return classification; }

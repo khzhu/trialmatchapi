@@ -74,6 +74,8 @@ public class TrialMatchController {
         trialMatchVariantMap.put("id", genomicId);
         trialMatchVariantMap.put("gene", genomic.getHugoSymbol());
         trialMatchVariantMap.put("name", genomic.getProteinChange().replace("p.",""));
+        trialMatchVariantMap.put("effect", genomic.getEffect());
+        trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
         trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGenomicID(genomicId));
         return  trialMatchVariantMap;
     }
