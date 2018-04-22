@@ -30,7 +30,7 @@ public class TrialMatch {
 
     @NotNull
     @Size(min = 1)
-    @Field("trial_title")
+    @Field("title")
     private String trialTitle;
 
     @NotNull

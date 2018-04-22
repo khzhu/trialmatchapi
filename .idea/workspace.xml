@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74b14cc6-c323-484e-9a74-72a7365dbafb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/controller/TrialMatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/controller/TrialMatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Genomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Genomic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/TrialMatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/TrialMatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/TrialMatchApiApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/TrialMatchApiApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/controller/TrialMatchController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/controller/TrialMatchController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/controller/TrialMatchController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/controller/TrialMatchController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/controller/TrialMatchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/controller/TrialMatchController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/domain/Genomic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/domain/Genomic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/domain/Trial.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pughlab/trialmatchapi/domain/Trial.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pughlab.trialmatchapi.TrialMatchApiApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pughlab.trialmatchapi.TrialMatchApiApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.pughlab.trialmatchapi.TrialMatchApiApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.pughlab.trialmatchapi.TrialMatchApiApplicationTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefire8764838360654623256tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefire_05827646587098037934tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire/surefirebooter3005361084026910905.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/trial-match-api-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/trial-match-api-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -15,14 +29,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TrialMatchController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TrialMatchController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/controller/TrialMatchController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="77" column="76" selection-start-line="77" selection-start-column="76" selection-end-line="77" selection-end-column="76" />
+            <state relative-caret-position="159">
+              <caret line="76" column="64" selection-start-line="76" selection-start-column="64" selection-end-line="76" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TrialMatch.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/TrialMatch.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2850">
+              <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Trial.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Trial.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -36,27 +68,6 @@
                 <element signature="e#2403#2404#0" expanded="true" />
                 <element signature="e#2450#2451#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TrialMatchApiApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/TrialMatchApiApplication.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -91,7 +102,7 @@
       <file leaf-file-name="TrialMatchServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/web/TrialMatchServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
+            <state relative-caret-position="457">
               <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
@@ -144,6 +155,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/controller/TrialMatchController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Genomic.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/controller/TrialMatchController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/TrialMatch.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Trial.java" />
       </list>
     </option>
   </component>
@@ -345,12 +358,12 @@
       <workItem from="1524278932615" duration="107000" />
       <workItem from="1524316558015" duration="6653000" />
       <workItem from="1524414388368" duration="3247000" />
-      <workItem from="1524424150733" duration="1719000" />
+      <workItem from="1524424150733" duration="2558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16254000" />
+    <option name="totallyTimeSpent" value="17093000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="305" y="23" width="1400" height="937" extended-state="0" />
@@ -633,13 +646,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Trial.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="19" column="13" selection-end-line="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/repository/TrialRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -678,13 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/TrialMatch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1364">
-          <caret line="251" selection-start-line="251" selection-end-line="251" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/repository/TrialMatchRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -696,13 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/web/TrialMatchServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
         </state>
       </provider>
     </entry>
@@ -730,6 +722,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/web/TrialMatchServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/TrialMatchApiApplication.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -753,11 +752,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/controller/TrialMatchController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="77" column="76" selection-start-line="77" selection-start-column="76" selection-end-line="77" selection-end-column="76" />
+        <state relative-caret-position="159">
+          <caret line="76" column="64" selection-start-line="76" selection-start-column="64" selection-end-line="76" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/Trial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="32" column="17" selection-start-line="32" selection-start-column="17" selection-end-line="32" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/pughlab/trialmatchapi/domain/TrialMatch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2850">
+          <caret line="241" lean-forward="true" selection-start-line="241" selection-end-line="241" />
         </state>
       </provider>
     </entry>
