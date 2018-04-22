@@ -29,7 +29,7 @@ import java.util.Arrays;
 public class TrialMatchController {
 
     private TrialMatchService trialMatchService;
-    private TrialService trialService;
+    private GenomicService genomicService;
 
     @Autowired
     public void setTrialMatchService(TrialMatchService trialMatchService) {
@@ -37,8 +37,8 @@ public class TrialMatchController {
     }
 
     @Autowired
-    public void setTrialService(TrialService trialService) {
-        this.trialService = trialService;
+    public void setGenomicService(GenomicService genomicService) {
+        this.genomicService = genomicService;
     }
 
     @ApiOperation(value = "Add a Trial Match")
@@ -68,52 +68,53 @@ public class TrialMatchController {
         return trialMatchService.getTrialMatchById(id);
     }
 
-    private List<HashMap> getTrialMatchesByHugoSymbol(String symbol) {
-        List<HashMap> trailMatches = new ArrayList<HashMap>();
-
-        for (Trial trial: trialService.listAllTrials()) {
-            HashMap<String, Object> trialMap= new HashMap<String, Object>();
-            trialMap.put("title", trial.getTitle());
-            trialMap.put("nctId", trial.getNctID());
-            trialMap.put("status", trial.getStatus());
-            trialMap.put("matches", trialMatchService.getTrialMatchByNctIdAndHugoSymbol(trial.getNctID(),symbol));
-            trailMatches.add(trialMap);
-        }
-
-        return trailMatches;
+    private HashMap getTrialMatchesByGenomicId(String genomicId) {
+        HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
+        Genomic genomic = genomicService.getGenomicById(genomicId);
+        trialMatchVariantMap.put("id", genomicId);
+        trialMatchVariantMap.put("gene", genomic.getHugoSymbol());
+        trialMatchVariantMap.put("name", genomic.getProteinChange().replace("p.",""));
+        trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGenomicID(genomicId));
+        return  trialMatchVariantMap;
     }
 
     private HashMap getTrialMatchVariantsByHugoSymbol(String symbol) {
-        HashMap<String, String> variants = new HashMap<String, String>();
+        HashMap<String, Object> trialMatchMap = new HashMap<String, Object>() {{
+            put("name", symbol);
+        }};
+        List<HashMap> variants = new ArrayList<HashMap>();
         List<TrialMatch> matches = trialMatchService.getTrialMatchByHugoSymbol(symbol);
         matches.forEach(match -> {
                     if (match.getProteinChange() !=null) {
-                        variants.put(match.getProteinChange().replace("p.",""), match.getId());
+                        HashMap<String, String> variant = new HashMap<String, String>() {{
+                        put("name",match.getProteinChange().replace("p.",""));
+                        put("id", match.getGenomicID());}};
+                        variants.add(variant);
                     }
                 });
-        return variants;
+        trialMatchMap.put("variants", variants);
+        return trialMatchMap;
     }
 
     @ApiOperation(value = "View available trial matches with a list of genes, separated by comma",response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/matches/genes/{symbols}")
-    public HashMap findTrialMatchesByGenes(@PathVariable String symbols) {
-        HashMap<String, List<HashMap>> trialMatchMap = new HashMap<String, List<HashMap>>();
-        List<String> genes = Arrays.asList(symbols.trim().split(","));
-        genes.forEach(gene-> trialMatchMap.put(gene, getTrialMatchesByHugoSymbol(gene)));
-        return trialMatchMap;
+            value = "/matches/variants/{id}")
+    public HashMap findTrialMatchesByGenes(@PathVariable String id) {
+        return getTrialMatchesByGenomicId(id);
     }
 
     @ApiOperation(value = "View variants of trial matches with a list of genes, separated by comma",response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/matches/variants/{symbols}")
-    public HashMap findTrialMatcheVariantsByGenes(@PathVariable String symbols) {
-        HashMap<String, HashMap> trialMatchMap = new HashMap<String, HashMap>();
+            value = "/matches/genes/{symbols}")
+    public List<HashMap> findTrialMatcheVariantsByGenes(@PathVariable String symbols) {
+        List<HashMap> trialMatchList = new ArrayList<HashMap>();
         List<String> genes = Arrays.asList(symbols.trim().split(","));
-        genes.forEach(gene-> trialMatchMap.put(gene, getTrialMatchVariantsByHugoSymbol(gene)));
-        return trialMatchMap;
+        genes.forEach(gene -> {
+            trialMatchList.add(getTrialMatchVariantsByHugoSymbol(gene));
+        });
+        return trialMatchList;
     }
 
     @ApiOperation(value = "Delete a trial match")
