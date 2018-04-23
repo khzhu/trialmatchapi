@@ -19,7 +19,11 @@ public interface TrialMatchRepository extends MongoRepository<TrialMatch, Intege
 
     List<TrialMatch> findTrialMatchByHugoSymbol(String hugoSymbol);
 
+    List<TrialMatch> findTrialMatchByHugoSymbolExists(String[] hugoSymbols);
+
     List<TrialMatch> findDistinctByNctIDAndAndHugoSymbol(String nctId, String hugoSymbol);
+
+    List<TrialMatch> findDistinctByGenomicID(String genomicId);
 
     //Supports native JSON query string
     @Query("{sample_id:'?0'}")

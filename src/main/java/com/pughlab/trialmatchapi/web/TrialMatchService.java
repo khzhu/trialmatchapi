@@ -11,7 +11,11 @@ public interface TrialMatchService {
 
     List<TrialMatch> getTrialMatchByHugoSymbol(String hugoSymbol);
 
+    List<TrialMatch> findTrialMatchByHugoSymbolExists(String[] hugoSymbols);
+
     List<TrialMatch> getTrialMatchByNctIdAndHugoSymbol(String nctId, String hugoSymbol);
+
+    List<TrialMatch> findDistinctByGenomicID(String genomicId);
 
     TrialMatch saveTrialMatch(TrialMatch trialMatch);
 

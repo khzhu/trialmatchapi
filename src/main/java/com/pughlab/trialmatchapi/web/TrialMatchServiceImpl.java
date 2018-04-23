@@ -39,9 +39,21 @@ public class TrialMatchServiceImpl implements TrialMatchService {
     }
 
     @Override
+    public List<TrialMatch> findTrialMatchByHugoSymbolExists(String[] hugoSymbols) {
+        logger.debug("getTrialMatchByHugoSymbol called");
+        return trialMatchRepository.findTrialMatchByHugoSymbolExists(hugoSymbols);
+    }
+
+    @Override
     public List<TrialMatch> getTrialMatchByNctIdAndHugoSymbol(String nctId, String hugoSymbol) {
         logger.debug("getTrialMatchByNctIdAndHugoSymbol called");
         return trialMatchRepository.findDistinctByNctIDAndAndHugoSymbol(nctId, hugoSymbol);
+    }
+
+    @Override
+    public List<TrialMatch> findDistinctByGenomicID(String genomicId) {
+        logger.debug("findDistinctByGenomicID called");
+        return trialMatchRepository.findDistinctByGenomicID(genomicId);
     }
 
     public TrialMatch saveTrialMatch(TrialMatch trialMatch) {

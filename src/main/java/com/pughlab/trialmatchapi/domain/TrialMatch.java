@@ -30,7 +30,7 @@ public class TrialMatch {
 
     @NotNull
     @Size(min = 1)
-    @Field("trial_title")
+    @Field("title")
     private String trialTitle;
 
     @NotNull
@@ -57,6 +57,11 @@ public class TrialMatch {
     @Size(min = 1)
     @Field("patient_id")
     private String patientID;
+
+    @NotNull
+    @Size(min = 1)
+    @Field("genomic_id")
+    private String genomicID;
 
     @NotNull
     @Size(min = 1)
@@ -110,7 +115,7 @@ public class TrialMatch {
 
     public TrialMatch(String nctID, String trialTitle, String code, String matchType, String matchLevel, String sampleID,
                       String hugoSymbol, String variantClassification, String proteinChange, String chromosome,
-                      long position, String dose, String patientID, String oncogenicity,
+                      long position, String dose, String patientID, String genomicID, String oncogenicity,
                       String mutEffect, String trialStatus, String vitalStatus) {
         this.nctID = nctID;
         this.trialTitle = trialTitle;
@@ -119,6 +124,7 @@ public class TrialMatch {
         this.matchLevel = matchLevel;
         this.sampleID = sampleID;
         this.patientID = patientID;
+        this.genomicID = genomicID;
         this.hugoSymbol = hugoSymbol;
         this.variantClassification = variantClassification;
         this.proteinChange = proteinChange;
@@ -236,6 +242,12 @@ public class TrialMatch {
 
     public void setPatientID(String patientID) {
         this.patientID = patientID;
+    }
+
+    public String getGenomicID() { return genomicID; }
+
+    public void setGenomicID(String genomicID) {
+        this.genomicID = genomicID;
     }
 
     public String getTrialStatus() { return trialStatus; }
