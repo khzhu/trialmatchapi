@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Object stores matched patient clinical and genomic information to trials
+ * Matched patient clinical and genomic information to trials
  *
  * @author  Kelsey Zhu
  * @version 1.0

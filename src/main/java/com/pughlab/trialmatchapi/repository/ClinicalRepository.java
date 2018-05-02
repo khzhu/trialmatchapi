@@ -5,7 +5,7 @@ import com.pughlab.trialmatchapi.domain.Clinical;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Interface for REST APIs for retrieving matched patient clinical and genomic information to trials
+ * Interface for REST APIs for retrieving clinical information to trials
  *
  * @author  Kelsey Zhu
  * @version 1.0

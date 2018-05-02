@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Trial object stores clinical trial information
+ * Trial Information
  *
  * @author  Kelsey Zhu
  * @version 1.0

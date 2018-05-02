@@ -7,7 +7,7 @@ import com.pughlab.trialmatchapi.domain.Genomic;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Interface for REST APIs for retrieving trial
+ * Interface for REST APIs for retrieving genomic information to trials
  *
  * @author  Kelsey Zhu
  * @version 1.0

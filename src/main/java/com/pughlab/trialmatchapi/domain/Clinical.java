@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- * Clinical Trial information
+ * Clinical Information
  *
  * @author  Kelsey Zhu
  * @version 1.0

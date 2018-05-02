@@ -1,4 +1,4 @@
-#REST APIs for retrieving clinical and genomic information to matched trials
+#REST APIs for retrieving clinical and genomic information to trials
 ##check out the source code from github repository
 ```
 git clone https://github.com/khzhu/matchapi.git
@@ -7,12 +7,20 @@ git clone https://github.com/khzhu/matchapi.git
 ```
 mvn -X clean compile install
 ```
-##start web service
+##deploy api war file to the site
 ```
-java -jar target/match-api-0.0.1-SNAPSHOT.jar
+cp $MATCHMINER_API_HOME/target/trial-match-api-0.0.1-SNAPSHOT.war $TOMCAT_HOME/webapps/web
 ```
-##query api
+###restart tomcat
 ```
-curl http://localhost:8083/api/matches/id/5acb9c0243c582265b9f7734
-
+$TOMCAT_HOME/bin/catalina.sh stop
+$TOMCAT_HOME/bin/catalina.sh start
+```
+###open your favorite browser and view documents online
+```
+http://localhost:8081/web/swagger-ui.html
+```
+##or query trial match API from the terminal
+```
+curl http://localhost:8081/web/api/matches/genes/ERBB2,BRCA2,BRCA1
 ```

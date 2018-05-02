@@ -5,7 +5,7 @@ import com.pughlab.trialmatchapi.domain.Trial;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * Interface for REST APIs for retrieving trial
+ * Interface for REST APIs for retrieving trial information
  *
  * @author  Kelsey Zhu
  * @version 1.0
