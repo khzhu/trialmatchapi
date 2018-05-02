@@ -1,7 +1,7 @@
 # REST APIs for retrieving clinical and genomic information to trials
 ## check out the source code from github repository
 ```
-git clone https://github.com/khzhu/matchapi.git
+git clone https://github.com/pughlab/trialmatchapi.git
 ```
 ## build from source
 ```

@@ -25,7 +25,7 @@ import java.util.Arrays;
 
 @RestController
 @RequestMapping("/api")
-@Api(value="trialmatchapi", description="Operations pertaining to retriving clinical and genomic information for trials")
+@Api(value="trialmatchapi", description="Operations pertaining to retrieving clinical and genomic information for trials")
 public class TrialMatchController {
 
     private TrialMatchService trialMatchService;
@@ -41,7 +41,7 @@ public class TrialMatchController {
         this.genomicService = genomicService;
     }
 
-    @ApiOperation(value = "Add a Trial Match")
+    @ApiOperation(value = "Add a trial Match")
     @RequestMapping(value = "/matches/add", method = RequestMethod.POST, produces = "application/json")
     public void createTrialMatch(@RequestBody TrialMatch trialMatch) {
         trialMatchService.saveTrialMatch(trialMatch);
@@ -98,6 +98,16 @@ public class TrialMatchController {
         return trialMatchMap;
     }
 
+    private List<TrialMatch> getTrialMatchBySampleIds(List<String> sampleIds) {
+        List<TrialMatch> trials = new ArrayList<TrialMatch>();
+        sampleIds.forEach(sampleId -> {
+            if (!sampleId.isEmpty()) {
+                trials.addAll(trialMatchService.getTrialMatchBySampleId(sampleId));
+            }
+        });
+        return trials;
+    }
+
     @ApiOperation(value = "View available trial matches with a list of genes, separated by comma",response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
@@ -106,7 +116,7 @@ public class TrialMatchController {
         return getTrialMatchesByGenomicId(id);
     }
 
-    @ApiOperation(value = "View variants of trial matches with a list of genes, separated by comma",response = HashMap.class)
+    @ApiOperation(value = "View available variants of trial matches with a list of genes, separated by comma",response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/genes/{symbols}")
@@ -117,6 +127,15 @@ public class TrialMatchController {
             trialMatchList.add(getTrialMatchVariantsByHugoSymbol(gene));
         });
         return trialMatchList;
+    }
+
+    @ApiOperation(value = "View available trial matches with a list of sample IDs, separated by comma",response = List.class)
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/matches/samples/{ids}")
+    public List<TrialMatch> findTrialMatchesBySampleIds(@PathVariable String ids) {
+        List<String> sampleIds = Arrays.asList(ids.trim().split(","));
+        return getTrialMatchBySampleIds(sampleIds);
     }
 
     @ApiOperation(value = "Delete a trial match")

@@ -51,6 +51,12 @@ public class TrialMatchServiceImpl implements TrialMatchService {
     }
 
     @Override
+    public List<TrialMatch> getTrialMatchBySampleId(String sampleId) {
+        logger.debug("getTrialMatchBySampleIds called");
+        return trialMatchRepository.findTrialMatchBySampleID(sampleId);
+    }
+
+    @Override
     public List<TrialMatch> findDistinctByGenomicID(String genomicId) {
         logger.debug("findDistinctByGenomicID called");
         return trialMatchRepository.findDistinctByGenomicID(genomicId);
