@@ -9,7 +9,7 @@
     <packaging>war</packaging>
 
     <name>trial-match-api</name>
-    <description>Demo project for Spring Boot</description>
+    <description>MatchMiner REST APIs for retrieving matched clinical trial information</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
