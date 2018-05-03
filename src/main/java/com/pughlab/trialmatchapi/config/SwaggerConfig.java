@@ -32,7 +32,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
                 .description("\"Spring Boot REST API for Trial Match\"")
                 .version("1.0.0")
                 .license("Apache License Version 2.0")
-                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+                .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
                 .contact(new Contact("Pughlab UHN", "https://pughlab.org", "kzhu@uhnresearch.ca"))
                 .build();
     }

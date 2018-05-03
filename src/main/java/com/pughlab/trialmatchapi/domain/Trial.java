@@ -38,10 +38,16 @@ public class Trial {
     @Field("status")
     private String status;
 
-    public Trial(String nctID, String title, String status) {
+    @NotNull
+    @Size(min = 1)
+    @Field("last_updated")
+    private String lastUpdated;
+
+    public Trial(String nctID, String title, String status, String lastUpdated) {
         this.nctID = nctID;
         this.title = title;
         this.status = status;
+        this.lastUpdated = lastUpdated;
     }
 
     public String getId() {
@@ -72,6 +78,12 @@ public class Trial {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getLastUpdated() { return  lastUpdated; }
+
+    public void setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
 }

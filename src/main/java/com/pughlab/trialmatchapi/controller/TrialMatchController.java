@@ -6,7 +6,6 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import com.pughlab.trialmatchapi.domain.*;
 import com.pughlab.trialmatchapi.web.*;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -108,7 +107,8 @@ public class TrialMatchController {
         return trials;
     }
 
-    @ApiOperation(value = "View available trial matches with a list of genes, separated by comma",response = HashMap.class)
+    @ApiOperation(value = "View available trial matches with a list of genes, separated by comma",
+                  response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/variants/{id}")
@@ -116,7 +116,8 @@ public class TrialMatchController {
         return getTrialMatchesByGenomicId(id);
     }
 
-    @ApiOperation(value = "View available variants of trial matches with a list of genes, separated by comma",response = HashMap.class)
+    @ApiOperation(value = "View available variants of trial matches with a list of genes, separated by comma",
+                  response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/genes/{symbols}")
@@ -129,7 +130,8 @@ public class TrialMatchController {
         return trialMatchList;
     }
 
-    @ApiOperation(value = "View available trial matches with a list of sample IDs, separated by comma",response = List.class)
+    @ApiOperation(value = "View available trial matches with a list of sample IDs, separated by comma",
+                  response = List.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/samples/{ids}")

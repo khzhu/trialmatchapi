@@ -32,17 +32,35 @@ public class Clinical {
     @Field("patient_id")
     private String patientID;
 
+    @NotNull
+    @Size(min = 1)
+    @Field("GENDER")
+    private String gender;
 
     @NotNull
     @Size(min = 1)
     @Field("vital_status")
     private String vitalStatus;
 
-    public Clinical(String id, String sampleID, String patientID, String vitalStatus) {
+    @NotNull
+    @Size(min = 1)
+    @Field("ONCOTREE_PRIMARY_DIAGNOSIS_NAME")
+    private String oncotreeCode;
+
+    @NotNull
+    @Size(min = 1)
+    @Field("ORD_PHYSICIAN_NAME")
+    private String physicianName;
+
+    public Clinical(String id, String sampleID, String patientID, String gender,
+                    String vitalStatus, String oncotreeCode, String physicianName) {
         this.id = id;
         this.sampleID = sampleID;
         this.patientID = patientID;
+        this.gender = gender;
         this.vitalStatus = vitalStatus;
+        this.oncotreeCode = oncotreeCode;
+        this.physicianName = physicianName;
     }
 
     public String getId() {
@@ -61,12 +79,15 @@ public class Clinical {
         this.sampleID = sampleID;
     }
 
-
     public String getPatientID() { return  patientID; }
 
     public void setPatientID(String patientID) {
         this.patientID = patientID;
     }
+
+    public String getGender() { return gender; }
+
+    public void setGender(String gender) { this.gender = gender; }
 
     public String getVitalStatus() { return vitalStatus; }
 
@@ -74,5 +95,16 @@ public class Clinical {
         this.vitalStatus = vitalStatus;
     }
 
+    public String getOncotreeCode() { return  oncotreeCode; }
+
+    public void setOncotreeCode(String oncotreeCode) {
+        this.oncotreeCode = oncotreeCode;
+    }
+
+    public String getPhysicianName() { return physicianName; }
+
+    public void setPhysicianName(String physicianName) {
+        this.physicianName = physicianName;
+    }
 }
 

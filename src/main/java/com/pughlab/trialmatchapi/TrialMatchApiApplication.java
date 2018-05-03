@@ -18,11 +18,3 @@ public class TrialMatchApiApplication extends SpringBootServletInitializer {
     }
 
 }
-
-/*@SpringBootApplication
-public class TrialMatchApiApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(TrialMatchApiApplication.class, args);
-    }
-}*/
