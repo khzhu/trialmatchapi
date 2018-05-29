@@ -24,6 +24,11 @@ public class Genomic {
 
     @NotNull
     @Size(min = 1)
+    @Field("SAMPLE_ID")
+    private String sampleId;
+
+    @NotNull
+    @Size(min = 1)
     @Field("TRUE_HUGO_SYMBOL")
     private String hugoSymbol;
 
@@ -57,9 +62,10 @@ public class Genomic {
     @Field("CNV_CALL")
     private String cnvCall;
 
-    public Genomic(String id, String hugoSymbol, String proteinChange, String mutEffect,
+    public Genomic(String id, String sampleId, String hugoSymbol, String proteinChange, String mutEffect,
                    String oncogenicity, String classification, String category, String cnvCall) {
         this.id = id;
+        this.sampleId = sampleId;
         this.hugoSymbol = hugoSymbol;
         this.proteinChange = proteinChange;
         this.mutEffect = mutEffect;
@@ -76,6 +82,10 @@ public class Genomic {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getSampleId() { return this.sampleId; }
+
+    public void setSampleId(String sampleId) { this.sampleId = sampleId; }
 
     public String getHugoSymbol() {
         return hugoSymbol;
