@@ -16,6 +16,7 @@ import java.util.List;
 public interface TrialMatchRepository extends MongoRepository<TrialMatch, Integer> {
 
     TrialMatch findById(String id);
+    List<TrialMatch> findDistinctByHugoSymbol(String hugoSymbol);
 
     List<TrialMatch> findTrialMatchByHugoSymbol(String hugoSymbol);
 

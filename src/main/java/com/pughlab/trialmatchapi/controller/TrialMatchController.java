@@ -107,12 +107,12 @@ public class TrialMatchController {
         return trials;
     }
 
-    @ApiOperation(value = "View available trial matches with a list of genes, separated by comma",
+    @ApiOperation(value = "View available trial matches with a given variant",
                   response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/variants/{id}")
-    public HashMap findTrialMatchesByGenes(@PathVariable String id) {
+    public HashMap findTrialMatchesByVariant(@PathVariable String id) {
         return getTrialMatchesByGenomicId(id);
     }
 

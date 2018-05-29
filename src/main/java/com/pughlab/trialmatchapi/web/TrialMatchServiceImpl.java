@@ -33,7 +33,7 @@ public class TrialMatchServiceImpl implements TrialMatchService {
     @Override
     public List<TrialMatch> getTrialMatchByHugoSymbol(String hugoSymbol) {
         logger.debug("getTrialMatchByHugoSymbol called");
-        return trialMatchRepository.findTrialMatchByHugoSymbol(hugoSymbol);
+        return trialMatchRepository.findDistinctByHugoSymbol(hugoSymbol);
     }
 
     @Override
