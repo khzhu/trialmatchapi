@@ -1,9 +1,6 @@
 package com.pughlab.trialmatchapi.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import com.pughlab.trialmatchapi.domain.*;
 import com.pughlab.trialmatchapi.web.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +77,19 @@ public class TrialMatchController {
         return  trialMatchVariantMap;
     }
 
+    private HashMap getTrialMatchesByProteinChangeAndSampleID(String proteinChange, String sampleId) {
+        HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
+        Genomic genomic = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
+        trialMatchVariantMap.put("id", genomic.getId());
+        trialMatchVariantMap.put("gene", genomic.getHugoSymbol());
+        trialMatchVariantMap.put("name", genomic.getProteinChange().replace("p.",""));
+        trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
+        trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
+        trialMatchVariantMap.put("sampleId", genomic.getSampleId());
+        trialMatchVariantMap.put("matches", trialMatchService.findDistinctByProteinChangeAndSampleID(proteinChange, sampleId));
+        return  trialMatchVariantMap;
+    }
+
     private HashMap getTrialMatchVariantsByHugoSymbol(String symbol) {
         HashMap<String, Object> trialMatchMap = new HashMap<String, Object>() {{
             put("name", symbol);
@@ -90,7 +100,8 @@ public class TrialMatchController {
             if (match.getProteinChange() !=null) {
                 HashMap<String, String> variant = new HashMap<String, String>() {{
                     put("name",match.getProteinChange().replace("p.",""));
-                    put("id", match.getGenomicID());}};
+                    put("id", match.getGenomicID());
+                    put("sample", match.getSampleID());}};
                 variants.add(variant);
             }
         });
@@ -108,13 +119,22 @@ public class TrialMatchController {
         return trials;
     }
 
-    @ApiOperation(value = "View available trial matches with a given variant",
+    @ApiOperation(value = "View available trial matches with a given protein change",
                   response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/variants/{id}")
     public HashMap findTrialMatchesByVariant(@PathVariable String id) {
         return getTrialMatchesByGenomicId(id);
+    }
+
+    @ApiOperation(value = "View available trial matches with given protein change and sampleId ",
+            response = HashMap.class)
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/matches/variants/{name}/{sample}")
+    public HashMap findTrialMatchesByVariantAndSampleId(@PathVariable String name, @PathVariable String sample) {
+        return getTrialMatchesByProteinChangeAndSampleID((name.indexOf("p.") == -1) ? "p."+name : name, sample);
     }
 
     @ApiOperation(value = "View available variants of trial matches with a list of genes, separated by comma",

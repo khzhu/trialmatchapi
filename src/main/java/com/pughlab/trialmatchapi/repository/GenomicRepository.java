@@ -18,7 +18,7 @@ public interface GenomicRepository extends MongoRepository<Genomic, Integer> {
 
     Genomic findById(String id);
 
-    Genomic findTrialByHugoSymbolAndProteinChange(String hugoSymbol, String proteinChange);
+    Genomic findGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId);
 
     @Override
     void delete(Genomic genomic);

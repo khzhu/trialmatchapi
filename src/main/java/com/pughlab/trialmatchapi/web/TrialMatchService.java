@@ -19,6 +19,8 @@ public interface TrialMatchService {
 
     List<TrialMatch> findDistinctByGenomicID(String genomicId);
 
+    List<TrialMatch> findDistinctByProteinChangeAndSampleID(String proteinChange, String sampleId);
+
     TrialMatch saveTrialMatch(TrialMatch trialMatch);
 
     void delete(String id);

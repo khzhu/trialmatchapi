@@ -9,7 +9,7 @@ public interface GenomicService {
 
     Genomic getGenomicById(String id);
 
-    Genomic getTrialByHugoSymbolAndProteinChange(String hugoSymbol, String proteinChange);
+    Genomic getGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId);
 
     void delete(String id);
 }

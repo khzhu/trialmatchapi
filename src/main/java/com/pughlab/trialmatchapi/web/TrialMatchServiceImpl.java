@@ -60,6 +60,12 @@ public class TrialMatchServiceImpl implements TrialMatchService {
         return trialMatchRepository.findDistinctByGenomicID(genomicId);
     }
 
+    @Override
+    public List<TrialMatch> findDistinctByProteinChangeAndSampleID(String proteinChange, String sampleId) {
+        logger.debug("findDistinctByVariantAndSampleID called");
+        return trialMatchRepository.findDistinctByProteinChangeAndSampleID(proteinChange, sampleId);
+    }
+
     public TrialMatch saveTrialMatch(TrialMatch trialMatch) {
         logger.debug("saveTrialMatch called");
         return trialMatchRepository.save(trialMatch);

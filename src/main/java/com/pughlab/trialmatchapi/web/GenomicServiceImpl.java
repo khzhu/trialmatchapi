@@ -32,9 +32,9 @@ public class GenomicServiceImpl implements GenomicService {
     }
 
     @Override
-    public Genomic getTrialByHugoSymbolAndProteinChange(String hugoSymbol, String proteinChange) {
-        logger.debug("getTrialByHugoSymbolAndProteinChange called");
-        return genomicRepository.findTrialByHugoSymbolAndProteinChange(hugoSymbol, proteinChange);
+    public Genomic getGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId) {
+        logger.debug("getGenomicBySampleIdAndProteinChange called");
+        return genomicRepository.findGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
     }
 
     @Override
