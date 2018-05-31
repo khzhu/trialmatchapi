@@ -26,7 +26,7 @@ public interface TrialMatchRepository extends MongoRepository<TrialMatch, Intege
 
     List<TrialMatch> findDistinctByGenomicID(String genomicId);
 
-    List<TrialMatch> findDistinctByProteinChangeAndSampleID(String proteinChange, String sampleId);
+    List<TrialMatch> findDistinctByHugoSymbolAndProteinChangeAndSampleID(String gene, String proteinChange, String sampleId);
 
     List<TrialMatch> findDistinctBySampleID(String sampleId);
 

@@ -77,7 +77,7 @@ public class TrialMatchController {
         return  trialMatchVariantMap;
     }
 
-    private HashMap getTrialMatchesByProteinChangeAndSampleID(String proteinChange, String sampleId) {
+    private HashMap getTrialMatchesByProteinChangeOfGeneAndSampleID(String gene, String proteinChange, String sampleId) {
         HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
         Genomic genomic = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
         trialMatchVariantMap.put("id", genomic.getId());
@@ -86,8 +86,17 @@ public class TrialMatchController {
         trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
         trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
         trialMatchVariantMap.put("sampleId", genomic.getSampleId());
-        trialMatchVariantMap.put("matches", trialMatchService.findDistinctByProteinChangeAndSampleID(proteinChange, sampleId));
+        trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGeneAndProteinChangeAndSampleID(gene, proteinChange, sampleId));
         return  trialMatchVariantMap;
+    }
+
+    private Boolean variantExists(List<HashMap> variants, HashMap variant) {
+        for(HashMap var: variants) {
+            if (var.equals(variant)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private HashMap getTrialMatchVariantsByHugoSymbol(String symbol) {
@@ -100,11 +109,13 @@ public class TrialMatchController {
             if (match.getProteinChange() !=null) {
                 HashMap<String, String> variant = new HashMap<String, String>() {{
                     put("name",match.getProteinChange().replace("p.",""));
-                    put("id", match.getGenomicID());
-                    put("sample", match.getSampleID());}};
-                variants.add(variant);
+                    put("sampleId", match.getSampleID()); }};
+                if (!(variantExists(variants, variant))) {
+                    variants.add(variant);
+                }
             }
         });
+
         trialMatchMap.put("variants", variants);
         return trialMatchMap;
     }
@@ -128,13 +139,16 @@ public class TrialMatchController {
         return getTrialMatchesByGenomicId(id);
     }
 
-    @ApiOperation(value = "View available trial matches with given protein change and sampleId ",
+    @ApiOperation(value = "View available trial matches with given protein change of the gene and sample ID",
             response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/matches/variants/{name}/{sample}")
-    public HashMap findTrialMatchesByVariantAndSampleId(@PathVariable String name, @PathVariable String sample) {
-        return getTrialMatchesByProteinChangeAndSampleID((name.indexOf("p.") == -1) ? "p."+name : name, sample);
+            value = "/matches/{symbol}/{protein}")
+    public HashMap findTrialMatchesByVariantOfGeneAndSampleId(@PathVariable("symbol") String symbol,
+                                                              @PathVariable("protein") String protein,
+                                                              @RequestParam("sample") String sample) {
+        return getTrialMatchesByProteinChangeOfGeneAndSampleID(
+                symbol, (protein.indexOf("p.") == -1) ? "p."+protein : protein, sample);
     }
 
     @ApiOperation(value = "View available variants of trial matches with a list of genes, separated by comma",
