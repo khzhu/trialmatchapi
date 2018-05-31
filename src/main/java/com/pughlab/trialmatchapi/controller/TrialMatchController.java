@@ -68,11 +68,11 @@ public class TrialMatchController {
         HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
         Genomic genomic = genomicService.getGenomicById(genomicId);
         trialMatchVariantMap.put("id", genomicId);
-        trialMatchVariantMap.put("gene", genomic.getHugoSymbol());
-        trialMatchVariantMap.put("name", genomic.getProteinChange().replace("p.",""));
+        trialMatchVariantMap.put("symbol", genomic.getHugoSymbol());
+        trialMatchVariantMap.put("protein", genomic.getProteinChange().replace("p.",""));
         trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
         trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
-        trialMatchVariantMap.put("sampleId", genomic.getSampleId());
+        trialMatchVariantMap.put("sample", genomic.getSampleId());
         trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGenomicID(genomicId));
         return  trialMatchVariantMap;
     }
@@ -81,11 +81,11 @@ public class TrialMatchController {
         HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
         Genomic genomic = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
         trialMatchVariantMap.put("id", genomic.getId());
-        trialMatchVariantMap.put("gene", genomic.getHugoSymbol());
-        trialMatchVariantMap.put("name", genomic.getProteinChange().replace("p.",""));
+        trialMatchVariantMap.put("symbol", genomic.getHugoSymbol());
+        trialMatchVariantMap.put("protein", genomic.getProteinChange().replace("p.",""));
         trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
         trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
-        trialMatchVariantMap.put("sampleId", genomic.getSampleId());
+        trialMatchVariantMap.put("sample", genomic.getSampleId());
         trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGeneAndProteinChangeAndSampleID(gene, proteinChange, sampleId));
         return  trialMatchVariantMap;
     }
@@ -101,15 +101,15 @@ public class TrialMatchController {
 
     private HashMap getTrialMatchVariantsByHugoSymbol(String symbol) {
         HashMap<String, Object> trialMatchMap = new HashMap<String, Object>() {{
-            put("name", symbol);
+            put("symbol", symbol);
         }};
         List<HashMap> variants = new ArrayList<HashMap>();
         List<TrialMatch> matches = trialMatchService.getTrialMatchByHugoSymbol(symbol);
         matches.forEach(match -> {
             if (match.getProteinChange() !=null) {
                 HashMap<String, String> variant = new HashMap<String, String>() {{
-                    put("name",match.getProteinChange().replace("p.",""));
-                    put("sampleId", match.getSampleID()); }};
+                    put("protein",match.getProteinChange().replace("p.",""));
+                    put("sample", match.getSampleID()); }};
                 if (!(variantExists(variants, variant))) {
                     variants.add(variant);
                 }
