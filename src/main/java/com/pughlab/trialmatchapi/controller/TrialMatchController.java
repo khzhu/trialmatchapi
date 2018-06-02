@@ -90,15 +90,6 @@ public class TrialMatchController {
         return  trialMatchVariantMap;
     }
 
-    private Boolean variantExists(List<HashMap> variants, HashMap variant) {
-        for(HashMap var: variants) {
-            if (var.equals(variant)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private HashMap getTrialMatchVariantsByHugoSymbol(String symbol) {
         HashMap<String, Object> trialMatchMap = new HashMap<String, Object>() {{
             put("symbol", symbol);
@@ -110,7 +101,7 @@ public class TrialMatchController {
                 HashMap<String, String> variant = new HashMap<String, String>() {{
                     put("protein",match.getProteinChange().replace("p.",""));
                     put("sample", match.getSampleID()); }};
-                if (!(variantExists(variants, variant))) {
+                if (!variants.contains(variant)) {
                     variants.add(variant);
                 }
             }
@@ -139,16 +130,20 @@ public class TrialMatchController {
         return getTrialMatchesByGenomicId(id);
     }
 
-    @ApiOperation(value = "View available trial matches with given protein change of the gene and sample ID",
+    @ApiOperation(value = "View available trial matches with given protein change of the gene and a list of sample IDs seperated by comma",
             response = HashMap.class)
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/matches/{symbol}/{protein}")
-    public HashMap findTrialMatchesByVariantOfGeneAndSampleId(@PathVariable("symbol") String symbol,
+    public List<HashMap> findTrialMatchesByVariantOfGeneAndSample(@PathVariable("symbol") String symbol,
                                                               @PathVariable("protein") String protein,
                                                               @RequestParam("sample") String sample) {
-        return getTrialMatchesByProteinChangeOfGeneAndSampleID(
-                symbol, (protein.indexOf("p.") == -1) ? "p."+protein : protein, sample);
+        List<HashMap> trialMatchList = new ArrayList<HashMap>();
+        List<String> sampleIds = Arrays.asList(sample.trim().split(","));
+        sampleIds.forEach(sampleId ->
+            trialMatchList.add (getTrialMatchesByProteinChangeOfGeneAndSampleID(
+                symbol, (protein.indexOf("p.") == -1) ? "p."+protein : protein, sampleId)));
+        return trialMatchList;
     }
 
     @ApiOperation(value = "View available variants of trial matches with a list of genes, separated by comma",
@@ -157,12 +152,12 @@ public class TrialMatchController {
             method = RequestMethod.GET,
             value = "/matches/genes/{symbols}")
     public List<HashMap> findTrialMatcheVariantsByGenes(@PathVariable String symbols) {
-        List<HashMap> trialMatchList = new ArrayList<HashMap>();
+        List<HashMap> trialMatchVariantList = new ArrayList<HashMap>();
         List<String> genes = Arrays.asList(symbols.trim().split(","));
         genes.forEach(gene -> {
-            trialMatchList.add(getTrialMatchVariantsByHugoSymbol(gene));
+            trialMatchVariantList.add(getTrialMatchVariantsByHugoSymbol(gene));
         });
-        return trialMatchList;
+        return trialMatchVariantList;
     }
 
     @ApiOperation(value = "View available trial matches with a list of sample IDs, separated by comma",
