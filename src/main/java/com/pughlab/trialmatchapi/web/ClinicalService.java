@@ -8,6 +8,8 @@ public interface ClinicalService {
 
     Clinical getClinicalById(String id);
 
+    Clinical getClinicalBySampleId(String sampleId);
+
     void delete(String id);
 }
 

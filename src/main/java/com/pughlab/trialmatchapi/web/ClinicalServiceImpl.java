@@ -31,6 +31,12 @@ public class ClinicalServiceImpl implements ClinicalService {
     }
 
     @Override
+    public Clinical getClinicalBySampleId(String sampleId) {
+        logger.debug("getClinicalBySampleId called");
+        return clinicalRepository.findClinicalBySampleID(sampleId);
+    }
+
+    @Override
     public void delete(String id) {
         logger.debug("delete called");
         clinicalRepository.delete(getClinicalById(id));

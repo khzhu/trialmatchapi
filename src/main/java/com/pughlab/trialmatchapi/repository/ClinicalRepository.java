@@ -16,6 +16,8 @@ public interface ClinicalRepository extends MongoRepository<Clinical, Integer> {
 
     Clinical findById(String id);
 
+    Clinical findClinicalBySampleID(String sampleId);
+
     @Override
     void delete(Clinical clinical);
 }

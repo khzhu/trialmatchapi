@@ -24,12 +24,12 @@ public class Clinical {
 
     @NotNull
     @Size(min = 1)
-    @Field("sample_id")
+    @Field("SAMPLE_ID")
     private String sampleID;
 
     @NotNull
     @Size(min = 1)
-    @Field("patient_id")
+    @Field("PATIENT_ID")
     private String patientID;
 
     @NotNull
@@ -39,7 +39,7 @@ public class Clinical {
 
     @NotNull
     @Size(min = 1)
-    @Field("vital_status")
+    @Field("VITAL_STATUS")
     private String vitalStatus;
 
     @NotNull
@@ -49,17 +49,23 @@ public class Clinical {
 
     @NotNull
     @Size(min = 1)
+    @Field("CANCER_TYPE")
+    private String cancerType;
+
+    @NotNull
+    @Size(min = 1)
     @Field("ORD_PHYSICIAN_NAME")
     private String physicianName;
 
     public Clinical(String id, String sampleID, String patientID, String gender,
-                    String vitalStatus, String oncotreeCode, String physicianName) {
+                    String vitalStatus, String oncotreeCode, String cancerType, String physicianName) {
         this.id = id;
         this.sampleID = sampleID;
         this.patientID = patientID;
         this.gender = gender;
         this.vitalStatus = vitalStatus;
         this.oncotreeCode = oncotreeCode;
+        this.cancerType = cancerType;
         this.physicianName = physicianName;
     }
 
@@ -100,6 +106,10 @@ public class Clinical {
     public void setOncotreeCode(String oncotreeCode) {
         this.oncotreeCode = oncotreeCode;
     }
+
+    public String getCancerType() { return this.cancerType; }
+
+    public void setCancerType(String cancerType) { this.cancerType = cancerType; }
 
     public String getPhysicianName() { return physicianName; }
 

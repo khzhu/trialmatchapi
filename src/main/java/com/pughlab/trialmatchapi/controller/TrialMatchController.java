@@ -26,6 +26,7 @@ public class TrialMatchController {
 
     private TrialMatchService trialMatchService;
     private GenomicService genomicService;
+    private ClinicalService clinicalService;
 
     @Autowired
     public void setTrialMatchService(TrialMatchService trialMatchService) {
@@ -35,6 +36,11 @@ public class TrialMatchController {
     @Autowired
     public void setGenomicService(GenomicService genomicService) {
         this.genomicService = genomicService;
+    }
+
+    @Autowired
+    public void setClinicalService(ClinicalService clinicalService) {
+        this.clinicalService = clinicalService;
     }
 
     @ApiOperation(value = "Add a trial Match")
@@ -80,9 +86,12 @@ public class TrialMatchController {
     private HashMap getTrialMatchesByProteinChangeOfGeneAndSampleID(String gene, String proteinChange, String sampleId) {
         HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
         Genomic genomic = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
+        Clinical clinical = clinicalService.getClinicalBySampleId(sampleId);
+
         trialMatchVariantMap.put("genomicId", genomic.getId());
         trialMatchVariantMap.put("hugoSymbol", genomic.getHugoSymbol());
         trialMatchVariantMap.put("proteinChange", genomic.getProteinChange().replace("p.",""));
+        trialMatchVariantMap.put("cancerType", clinical.getCancerType());
         trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
         trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
         trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGeneAndProteinChangeAndSampleID(gene, proteinChange, sampleId));
