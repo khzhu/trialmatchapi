@@ -76,7 +76,7 @@ public class TrialMatchController {
         trialMatchVariantMap.put("genomicId", genomicId);
         trialMatchVariantMap.put("hugoSymbol", genomic.getHugoSymbol());
         trialMatchVariantMap.put("proteinChange", genomic.getProteinChange().replace("p.",""));
-        trialMatchVariantMap.put("exonNumber", (int)genomic.getExonNumber());
+        trialMatchVariantMap.put("exonNumber", genomic.getExonNumber());
         trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
         trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
         trialMatchVariantMap.put("sampleId", genomic.getSampleId());
@@ -88,11 +88,10 @@ public class TrialMatchController {
         HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
         Genomic genomic = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
         Clinical clinical = clinicalService.getClinicalBySampleId(sampleId);
-
         trialMatchVariantMap.put("genomicId", genomic.getId());
         trialMatchVariantMap.put("hugoSymbol", genomic.getHugoSymbol());
         trialMatchVariantMap.put("proteinChange", genomic.getProteinChange().replace("p.",""));
-        trialMatchVariantMap.put("exonNumber", (int)genomic.getExonNumber());
+        trialMatchVariantMap.put("exonNumber", genomic.getExonNumber());
         trialMatchVariantMap.put("cancerType", clinical.getCancerType());
         trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
         trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());

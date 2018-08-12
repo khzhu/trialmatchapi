@@ -37,9 +37,10 @@ public class Genomic {
     @Field("TRUE_PROTEIN_CHANGE")
     private String proteinChange;
 
+    @NotNull
     @Size(min = 1)
     @Field("TRUE_TRANSCRIPT_EXON")
-    private float exonNumber;
+    private String exonNumber;
 
     @NotNull
     @Size(min = 1)
@@ -66,7 +67,7 @@ public class Genomic {
     @Field("CNV_CALL")
     private String cnvCall;
 
-    public Genomic(String id, String sampleId, String hugoSymbol, String proteinChange, float exonNumber,
+    public Genomic(String id, String sampleId, String hugoSymbol, String proteinChange, String exonNumber,
                    String mutEffect, String oncogenicity, String classification, String category, String cnvCall) {
         this.id = id;
         this.sampleId = sampleId;
@@ -108,9 +109,9 @@ public class Genomic {
         this.proteinChange = proteinChange;
     }
 
-    public float getExonNumber() { return this.exonNumber; }
+    public String getExonNumber() { return this.exonNumber; }
 
-    public void setExonNumber(float exonNumber) { this.exonNumber = exonNumber; }
+    public void setExonNumber(String exonNumber) { this.exonNumber = exonNumber; }
 
     public String getMutEffect() { return mutEffect; }
 
