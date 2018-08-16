@@ -113,10 +113,16 @@ public class TrialMatch {
     @Field("vital_status")
     private String vitalStatus;
 
+    @NotNull
+    @Size(min = 1)
+    @Field("match_cancer_type")
+    private String matchCancerType;
+
+
     public TrialMatch(String nctID, String trialTitle, String code, String matchType, String matchLevel, String sampleID,
                       String hugoSymbol, String variantClassification, String proteinChange, String chromosome,
                       long position, String dose, String patientID, String genomicID, String oncogenicity,
-                      String mutEffect, String trialStatus, String vitalStatus) {
+                      String mutEffect, String trialStatus, String vitalStatus, String matchCancerType) {
         this.nctID = nctID;
         this.trialTitle = trialTitle;
         this.code = code;
@@ -136,6 +142,7 @@ public class TrialMatch {
         this.oncogenicity = oncogenicity;
         this.trialStatus = trialStatus;
         this.vitalStatus = vitalStatus;
+        this.matchCancerType = matchCancerType;
     }
 
     public String getId() {
@@ -273,4 +280,8 @@ public class TrialMatch {
     public void setVitalStatus(String vitalStatus) {
         this.vitalStatus = vitalStatus;
     }
+
+    public String getMatchCancerType() { return  this.matchCancerType; }
+
+    public void setMatchCancerType(String matchCancerType) { this.matchCancerType = matchCancerType; }
 }
