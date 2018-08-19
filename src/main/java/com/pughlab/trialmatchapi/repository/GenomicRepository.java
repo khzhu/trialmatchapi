@@ -5,6 +5,7 @@ package com.pughlab.trialmatchapi.repository;
 
 import com.pughlab.trialmatchapi.domain.Genomic;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import java.util.List;
 
 /**
  * Interface for REST APIs for retrieving genomic information to trials
@@ -18,7 +19,7 @@ public interface GenomicRepository extends MongoRepository<Genomic, Integer> {
 
     Genomic findById(String id);
 
-    Genomic findGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId);
+    List<Genomic> findGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId);
 
     @Override
     void delete(Genomic genomic);

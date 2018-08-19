@@ -86,16 +86,18 @@ public class TrialMatchController {
 
     private HashMap getTrialMatchesByProteinChangeOfGeneAndSampleID(String gene, String proteinChange, String sampleId) {
         HashMap<String, Object> trialMatchVariantMap = new HashMap<String, Object>();
-        Genomic genomic = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
-        Clinical clinical = clinicalService.getClinicalBySampleId(sampleId);
-        trialMatchVariantMap.put("genomicId", genomic.getId());
-        trialMatchVariantMap.put("hugoSymbol", genomic.getHugoSymbol());
-        trialMatchVariantMap.put("proteinChange", genomic.getProteinChange().replace("p.",""));
-        trialMatchVariantMap.put("exonNumber", genomic.getExonNumber());
-        trialMatchVariantMap.put("cancerType", clinical.getCancerType());
-        trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
-        trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
-        trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGeneAndProteinChangeAndSampleID(gene, proteinChange, sampleId));
+        List<Genomic> genomics = genomicService.getGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
+        genomics.forEach( genomic -> {
+            Clinical clinical = clinicalService.getClinicalBySampleId(sampleId);
+            trialMatchVariantMap.put("genomicId", genomic.getId());
+            trialMatchVariantMap.put("hugoSymbol", genomic.getHugoSymbol());
+            trialMatchVariantMap.put("proteinChange", genomic.getProteinChange().replace("p.", ""));
+            trialMatchVariantMap.put("exonNumber", genomic.getExonNumber());
+            trialMatchVariantMap.put("cancerType", clinical.getCancerType());
+            trialMatchVariantMap.put("mutEffect", genomic.getMutEffect());
+            trialMatchVariantMap.put("oncogenicity", genomic.getOncogenicity());
+            trialMatchVariantMap.put("matches", trialMatchService.findDistinctByGeneAndProteinChangeAndSampleID(gene, proteinChange, sampleId));
+        });
         return  trialMatchVariantMap;
     }
 

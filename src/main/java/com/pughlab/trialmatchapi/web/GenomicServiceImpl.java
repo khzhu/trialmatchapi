@@ -32,7 +32,7 @@ public class GenomicServiceImpl implements GenomicService {
     }
 
     @Override
-    public Genomic getGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId) {
+    public List<Genomic> getGenomicByProteinChangeAndSampleId(String proteinChange, String sampleId) {
         logger.debug("getGenomicBySampleIdAndProteinChange called");
         return genomicRepository.findGenomicByProteinChangeAndSampleId(proteinChange, sampleId);
     }
